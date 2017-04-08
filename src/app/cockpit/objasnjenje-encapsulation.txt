@@ -1,0 +1,10 @@
+encapsulation
+
+Sluzi da podesimo Angular da li hocemo da koristimo CSS globalno za komponentu ili lokalno gde on dodaje
+neke svoje atribute svkoj komponenti
+
+to je po defaultu:          encapsulation: ViewEncapsulation.Emulated,
+ako hocemo da iskljucimo:   encapsulation: ViewEncapsulation.None,
+shadow dom:                 encapsulation: ViewEncapsulation.Native
+
+shadow dome jos nije podrzan, radi isto sto i Emulated samo sto ne dodaje atribute nego radi u pozadini aplikacije

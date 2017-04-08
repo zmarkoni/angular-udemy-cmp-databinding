@@ -1,9 +1,10 @@
-import {Component, OnInit, EventEmitter, Output, ViewChild, ElementRef} from '@angular/core';
+import {Component, OnInit, EventEmitter, Output, ViewChild, ElementRef, ViewEncapsulation} from '@angular/core';
 
 @Component({
   selector: 'app-cockpit',
   templateUrl: './cockpit.component.html',
-  styleUrls: ['./cockpit.component.css']
+  styleUrls: ['./cockpit.component.css'],
+  encapsulation: ViewEncapsulation.Emulated,
 })
 export class CockpitComponent implements OnInit {
   // newServerName = '';  no need anymore since I am using local reference in the template #serverNameInput
