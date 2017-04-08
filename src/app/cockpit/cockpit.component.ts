@@ -6,7 +6,7 @@ import {Component, OnInit, EventEmitter, Output} from '@angular/core';
   styleUrls: ['./cockpit.component.css']
 })
 export class CockpitComponent implements OnInit {
-  newServerName = '';
+  // newServerName = '';  no need anymore since I am using local reference in the template #serverNameInput
   newServerContent = '';
   // ### Ovde je fora da napravimo emitere u child componenti, koje cemo osluskivti u parent componenti
   // imena lisenera iz app.component.html su u stvari properiji posto su sa desne strane
@@ -20,16 +20,16 @@ export class CockpitComponent implements OnInit {
 
   }
 
-  onAddServer() {
+  onAddServer(serverNameInput: HTMLInputElement) {
     this.serverCreated.emit({
-      serverName: this.newServerName,
+      serverName: serverNameInput.value,
       serverContent: this.newServerContent
     }); //ovde emitujemo event koji osluskujemo u app.component.html
   }
 
-  onAddBlueprint() {
+  onAddBlueprint(serverNameInput: HTMLInputElement) {
     this.blueprintCreated.emit({
-      serverName: this.newServerName,
+      serverName: serverNameInput.value,
       serverContent: this.newServerContent
     });
   }
