@@ -20,3 +20,13 @@ Drugi nacin je da koristimo direktivu ViewChild pomocu koje saljemo informaciju 
     onButtonClick1() {
         console.log(this.localReferenceName1.nativeElement.value);  i to je to nema eventa a HTML je isti
     }
+
+======HTML -> TS=======================================================================
+koristimo direktivu ViewChild pomocu koje dobijamo informaciju iz HTML-a u TS
+    @ContentChild('contentParagraph') paragraph: ElementRef;
+
+    onButtonClick2() {
+            console.log(this.paragraph.nativeElement.textContent);  i to je to nema eventa a HTML je isti
+    }
+
+    //primer je u lifecycle-hooks.ts

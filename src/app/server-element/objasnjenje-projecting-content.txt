@@ -11,3 +11,6 @@ A HTML koji nam treba stavljamo izmenju imena komponente koju ukljucujemo negde
         Ovde ide HTML koji hocemo da se pojavi na mesto <ng-content></ng-content>
     </div>
 </app-ime-componente>
+
+
+========================
