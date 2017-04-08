@@ -7,8 +7,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   serverElements = [
-    {type: 'server', name: 'testServer', content: 'Just a test'},
-    {type: 'server', name: 'testServer', content: 'Just a test 1'}
+    {type: 'server', name: 'testServer', content: 'Just a test'}, // hook se opaljuje za svaki objekat, tj instancu
   ];
 
   onServerAdded(event: {serverName: string, serverContent: string}) {
@@ -25,5 +24,13 @@ export class AppComponent {
       name: event.serverName,
       content: event.serverContent
     });
+  }
+
+  onChangeFirst() {
+    this.serverElements[0].name = 'changed';
+  }
+
+  onDestroyFirst() {
+    this.serverElements.splice(0, 1);
   }
 }

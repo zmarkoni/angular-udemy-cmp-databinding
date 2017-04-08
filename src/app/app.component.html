@@ -6,18 +6,38 @@
   ></app-cockpit>
   <hr>
 
-  <div class="row">
-    <div class="col-xs-12">
-    <app-server-element
-        *ngFor="let serverElement of serverElements"
-        [srvElement]="serverElement">
+  <!--<div class="row">-->
+    <!--<div class="col-xs-12">-->
+    <!--<app-server-element-->
+        <!--*ngFor="let serverElement of serverElements"-->
+        <!--[srvElement]="serverElement">-->
 
-        <p>
-            <strong *ngIf="serverElement.type === 'server'" style="color: red">{{ serverElement.content }}</strong>
-            <em *ngIf="serverElement.type === 'blueprint'">{{ serverElement.content }}</em>
-        </p>
+        <!--<p>-->
+            <!--<strong *ngIf="serverElement.type === 'server'" style="color: red">{{ serverElement.content }}</strong>-->
+            <!--<em *ngIf="serverElement.type === 'blueprint'">{{ serverElement.content }}</em>-->
+        <!--</p>-->
+    <!--</app-server-element>-->
+    <!--</div>-->
+  <!--</div>-->
 
-    </app-server-element>
+    <hr>
+    <div class="row">
+        <div class="col-xs-12">
+            <h1>Test lifecycle hooks</h1>
+            <button class="btn btn-primary" (click)="onChangeFirst()">Change first name</button>
+            <button class="btn btn-danger" (click)="onDestroyFirst()">Destroy first name</button>
+            <app-lifecycle-hooks
+                *ngFor="let serverElement of serverElements"
+                [name]="serverElement.name"> <!-- name sa leve strane dolazi iz lifecycle.component.ts -->
+
+                <div class="Here we print content from serverElement">
+                    <hr>
+                    <p>
+                        <strong *ngIf="serverElement.type === 'server'" style="color: red">server content: {{ serverElement.content }}</strong>
+                        <em *ngIf="serverElement.type === 'blueprint'" style="color: blue">server content: {{ serverElement.content }}</em>
+                    </p>
+                </div>
+            </app-lifecycle-hooks>
+        </div>
     </div>
-  </div>
 </div>
