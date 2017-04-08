@@ -1,0 +1,13 @@
+Projecting content into Components
+
+Ovako mozemo koristiti HTML izmedju komponenti
+
+Koristimo direktivu <ng-content></ng-content>
+
+A HTML koji nam treba stavljamo izmenju imena komponente koju ukljucujemo negde
+
+<app-ime-componente>
+    <div>
+        Ovde ide HTML koji hocemo da se pojavi na mesto <ng-content></ng-content>
+    </div>
+</app-ime-componente>
