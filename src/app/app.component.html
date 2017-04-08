@@ -32,7 +32,7 @@
 
                 <div class="Here we print content from serverElement">
                     <hr>
-                    <p>
+                    <p #contentParagraph>
                         <strong *ngIf="serverElement.type === 'server'" style="color: red">server content: {{ serverElement.content }}</strong>
                         <em *ngIf="serverElement.type === 'blueprint'" style="color: blue">server content: {{ serverElement.content }}</em>
                     </p>
