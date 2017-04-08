@@ -1,4 +1,4 @@
-import {Component, OnInit, EventEmitter, Output} from '@angular/core';
+import {Component, OnInit, EventEmitter, Output, ViewChild, ElementRef} from '@angular/core';
 
 @Component({
   selector: 'app-cockpit',
@@ -7,30 +7,33 @@ import {Component, OnInit, EventEmitter, Output} from '@angular/core';
 })
 export class CockpitComponent implements OnInit {
   // newServerName = '';  no need anymore since I am using local reference in the template #serverNameInput
-  newServerContent = '';
+  // newServerContent = '';
+
   // ### Ovde je fora da napravimo emitere u child componenti, koje cemo osluskivti u parent componenti
   // imena lisenera iz app.component.html su u stvari properiji posto su sa desne strane
   // od njih pravimo emitere
   @Output() serverCreated = new EventEmitter<{serverName: string, serverContent: string}>();
   @Output() blueprintCreated = new EventEmitter<{serverName: string, serverContent: string}>();
 
-  constructor() { }
+  @ViewChild('serverContentInput') serverContentInput:ElementRef;
 
-  ngOnInit() {
+  constructor() {}
 
-  }
+  ngOnInit() {}
 
   onAddServer(serverNameInput: HTMLInputElement) {
     this.serverCreated.emit({
       serverName: serverNameInput.value,
-      serverContent: this.newServerContent
+      // serverContent: this.newServerContent
+      serverContent: this.serverContentInput.nativeElement.value
     }); //ovde emitujemo event koji osluskujemo u app.component.html
   }
 
   onAddBlueprint(serverNameInput: HTMLInputElement) {
     this.blueprintCreated.emit({
       serverName: serverNameInput.value,
-      serverContent: this.newServerContent
+      //serverContent: this.newServerContent
+      serverContent: this.serverContentInput.nativeElement.value
     });
   }
 }

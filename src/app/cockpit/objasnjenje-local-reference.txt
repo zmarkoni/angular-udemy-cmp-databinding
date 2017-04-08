@@ -1,0 +1,22 @@
+Imamo dva nacina koriscenja lokalnih referenci
+
+U svakom slucaju moramo da je definisemo u HTML-u na bilo koji element
+    <div #localReferenceName class="zoki">Ovako je definisemo uvek</div>
+
+======HTML -> TS=======================================================================
+Prvi nacin da je prosledimo iz HTML-a u typeScript je preko nekog eventa, znaci HTML -> TS
+    <button (click)="onButtonClick(localReferenceName)">Posalji</button>
+
+u TS-u
+    Ne definisemo property jer nam ne treba nego samo treba da odradimo logiku onButtonClick
+    onButtonClick(localReferenceName: HTMLInputElement) {
+        console.log(localReferenceName.value);  i to je to
+    }
+======TS -> HTML=======================================================================
+Drugi nacin je da koristimo direktivu ViewChild pomocu koje saljemo informaciju iz TS-a u HTML
+    @ViewChild('localReferenceName1') localReferenceName1: ElementRef;
+    // @ViewChild(imeKomponente) localReferenceName: ElementRef; moze i ovako ako treba
+
+    onButtonClick1() {
+        console.log(this.localReferenceName1.nativeElement.value);  i to je to nema eventa a HTML je isti
+    }
