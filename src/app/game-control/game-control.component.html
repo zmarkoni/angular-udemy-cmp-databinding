@@ -1,0 +1,9 @@
+<button class="btn btn-success"
+        (click)="onStartGame()"
+        [disabled]="pause">Start Game</button>
+
+<button class="btn btn-danger"
+        (click)="onPauseGame()"
+        [disabled]="!pause">Pause Game</button>
+
+<p>paused: {{ pause }}</p>

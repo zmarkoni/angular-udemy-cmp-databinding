@@ -1,43 +1,90 @@
-<div class="container">
-  <!--Listeners for events which will be sent from cockpit.html-->
-  <app-cockpit
-    (serverCreated)="onServerAdded($event)"
-    (blueprintCreated)="onBlueprintAdded($event)"
-  ></app-cockpit>
-  <hr>
+<!--<div class="container">-->
+    <!--&lt;!&ndash;Listeners for events which will be sent from cockpit.html&ndash;&gt;-->
+    <!--<app-cockpit-->
+            <!--(serverCreated)="onServerAdded($event)"-->
+            <!--(blueprintCreated)="onBlueprintAdded($event)"-->
+    <!--&gt;</app-cockpit>-->
+    <!--<hr>-->
 
-  <!--<div class="row">-->
-    <!--<div class="col-xs-12">-->
-    <!--<app-server-element-->
-        <!--*ngFor="let serverElement of serverElements"-->
-        <!--[srvElement]="serverElement">-->
+    <!--&lt;!&ndash;<div class="row">&ndash;&gt;-->
+    <!--&lt;!&ndash;<div class="col-xs-12">&ndash;&gt;-->
+    <!--&lt;!&ndash;<app-server-element&ndash;&gt;-->
+    <!--&lt;!&ndash;*ngFor="let serverElement of serverElements"&ndash;&gt;-->
+    <!--&lt;!&ndash;[srvElement]="serverElement">&ndash;&gt;-->
 
-        <!--<p>-->
-            <!--<strong *ngIf="serverElement.type === 'server'" style="color: red">{{ serverElement.content }}</strong>-->
-            <!--<em *ngIf="serverElement.type === 'blueprint'">{{ serverElement.content }}</em>-->
-        <!--</p>-->
-    <!--</app-server-element>-->
+    <!--&lt;!&ndash;<p>&ndash;&gt;-->
+    <!--&lt;!&ndash;<strong *ngIf="serverElement.type === 'server'" style="color: red">{{ serverElement.content }}</strong>&ndash;&gt;-->
+    <!--&lt;!&ndash;<em *ngIf="serverElement.type === 'blueprint'">{{ serverElement.content }}</em>&ndash;&gt;-->
+    <!--&lt;!&ndash;</p>&ndash;&gt;-->
+    <!--&lt;!&ndash;</app-server-element>&ndash;&gt;-->
+    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+    <!--<hr>-->
+    <!--<div class="row">-->
+        <!--<div class="col-xs-12">-->
+            <!--<h1>Test lifecycle hooks</h1>-->
+            <!--<button class="btn btn-primary" (click)="onChangeFirst()">Change first name</button>-->
+            <!--<button class="btn btn-danger" (click)="onDestroyFirst()">Destroy first name</button>-->
+            <!--<app-lifecycle-hooks-->
+                    <!--*ngFor="let serverElement of serverElements"-->
+                    <!--[name]="serverElement.name"> &lt;!&ndash; name sa leve strane dolazi iz lifecycle.component.ts &ndash;&gt;-->
+
+                <!--<div class="Here we print content from serverElement">-->
+                    <!--<hr>-->
+                    <!--<p #contentParagraph>-->
+                        <!--<strong *ngIf="serverElement.type === 'server'" style="color: red">server content: {{-->
+                            <!--serverElement.content }}</strong>-->
+                        <!--<em *ngIf="serverElement.type === 'blueprint'" style="color: blue">server content: {{-->
+                            <!--serverElement.content }}</em>-->
+                    <!--</p>-->
+                <!--</div>-->
+            <!--</app-lifecycle-hooks>-->
+        <!--</div>-->
     <!--</div>-->
-  <!--</div>-->
+<!--</div>-->
 
-    <hr>
+
+<div class="container">
     <div class="row">
         <div class="col-xs-12">
-            <h1>Test lifecycle hooks</h1>
-            <button class="btn btn-primary" (click)="onChangeFirst()">Change first name</button>
-            <button class="btn btn-danger" (click)="onDestroyFirst()">Destroy first name</button>
-            <app-lifecycle-hooks
-                *ngFor="let serverElement of serverElements"
-                [name]="serverElement.name"> <!-- name sa leve strane dolazi iz lifecycle.component.ts -->
+            <h3>Bind it!</h3>
+            <ol>
+                <li>Create three new components: GameControl, Odd and Even</li>
+                <li>The GameControl Component should have buttons to start and stop the game</li>
+                <li>When starting the game, an event (holding a incrementing number) should get emitted each second (ref
+                    = setInterval())
+                </li>
+                <li>The event should be listenable from outside the component</li>
+                <li>When stopping the game, no more events should get emitted (clearInterval(ref))</li>
+                <li>A new Odd component should get created for every odd number emitted, the same should happen for the
+                    Even Component (on even numbers)
+                </li>
+                <li>Simply output Odd - NUMBER or Even - NUMBER in the two components</li>
+                <li>Style the element (e.g. paragraph) holding your output text differently in both components</li>
+            </ol>
+        </div>
+    </div>
 
-                <div class="Here we print content from serverElement">
-                    <hr>
-                    <p #contentParagraph>
-                        <strong *ngIf="serverElement.type === 'server'" style="color: red">server content: {{ serverElement.content }}</strong>
-                        <em *ngIf="serverElement.type === 'blueprint'" style="color: blue">server content: {{ serverElement.content }}</em>
-                    </p>
-                </div>
-            </app-lifecycle-hooks>
+    <div class="row">
+        <div class="col-xs-12">
+            <hr>
+            <h1>Start/Stop game</h1>
+            <hr>
+            <app-game-control (intervalFired)="onIntervalFired($event)"></app-game-control>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
+            <hr>
+            <app-odd *ngFor="let firedNumber of oddNumbers" [oddNumber]="firedNumber"></app-odd>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
+            <app-even *ngFor="let firedNumber of evenNumbers" [evenNumber]="firedNumber"></app-even>
         </div>
     </div>
 </div>
